@@ -1,0 +1,89 @@
+└── Program: sortBubble
+    ├── Decls
+    │   ├── Var: SIZE, I, J, TEMP
+    │   │   └── Type: Int
+    │   └── Var: X
+    │       └── Array [Int(0)..Int(8000000)]
+    │           └── Type: Int
+    └── Block
+        ├── Assign
+        │   ├── Ident: SIZE
+        │   └── Binary: Minus
+        │       ├── Call
+        │       │   ├── Ident: readln
+        │       │   └── Args: []
+        │       └── Literal: Int(1)
+        ├── If
+        │   ├── Binary: Or
+        │   │   ├── Binary: Lt
+        │   │   │   ├── Ident: SIZE
+        │   │   │   └── Literal: Int(0)
+        │   │   └── Binary: Gt
+        │   │       ├── Ident: SIZE
+        │   │       └── Literal: Int(8000000)
+        │   └── Expr
+        │       └── Call
+        │           ├── Ident: exit_fail
+        │           └── Args: []
+        ├── For: I (To)
+        │   ├── Literal: Int(0)
+        │   ├── Ident: SIZE
+        │   └── Block
+        │       └── Assign
+        │           ├── Index
+        │           │   ├── Ident: X
+        │           │   └── Ident: I
+        │           └── Call
+        │               ├── Ident: readln
+        │               └── Args: []
+        ├── For: I (To)
+        │   ├── Literal: Int(1)
+        │   ├── Ident: SIZE
+        │   └── Block
+        │       └── For: J (Downto)
+        │           ├── Ident: SIZE
+        │           ├── Ident: I
+        │           └── Block
+        │               └── If
+        │                   ├── Binary: Lt
+        │                   │   ├── Index
+        │                   │   │   ├── Ident: X
+        │                   │   │   └── Ident: J
+        │                   │   └── Index
+        │                   │       ├── Ident: X
+        │                   │       └── Binary: Minus
+        │                   │           ├── Ident: J
+        │                   │           └── Literal: Int(1)
+        │                   └── Block
+        │                       ├── Assign
+        │                       │   ├── Ident: TEMP
+        │                       │   └── Index
+        │                       │       ├── Ident: X
+        │                       │       └── Binary: Minus
+        │                       │           ├── Ident: J
+        │                       │           └── Literal: Int(1)
+        │                       ├── Assign
+        │                       │   ├── Index
+        │                       │   │   ├── Ident: X
+        │                       │   │   └── Binary: Minus
+        │                       │   │       ├── Ident: J
+        │                       │   │       └── Literal: Int(1)
+        │                       │   └── Index
+        │                       │       ├── Ident: X
+        │                       │       └── Ident: J
+        │                       └── Assign
+        │                           ├── Index
+        │                           │   ├── Ident: X
+        │                           │   └── Ident: J
+        │                           └── Ident: TEMP
+        └── For: I (To)
+            ├── Literal: Int(0)
+            ├── Ident: SIZE
+            └── Block
+                └── Expr
+                    └── Call
+                        ├── Ident: writeln
+                        └── Args
+                            └── Index
+                                ├── Ident: X
+                                └── Ident: I

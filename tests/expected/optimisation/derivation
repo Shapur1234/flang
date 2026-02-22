@@ -1,0 +1,74 @@
+└── Program: optimisation
+    ├── Decls
+    │   └── Var: I
+    │       └── Type: Int
+    └── Block
+        ├── Block
+        │   └── Block
+        │       └── Block
+        │           └── Block
+        │               └── Block
+        │                   ├── Assign
+        │                   │   ├── Ident: I
+        │                   │   └── Binary: Times
+        │                   │       ├── Binary: Plus
+        │                   │       │   ├── Literal: Int(1)
+        │                   │       │   └── Literal: Int(2)
+        │                   │       └── Literal: Int(3)
+        │                   └── Expr
+        │                       └── Call
+        │                           ├── Ident: writeln
+        │                           └── Args
+        │                               └── Ident: I
+        ├── Block
+        │   └── Block
+        │       └── Assign
+        │           ├── Ident: I
+        │           └── Binary: Plus
+        │               ├── Ident: I
+        │               └── Call
+        │                   ├── Ident: real_to_int
+        │                   └── Args
+        │                       └── Binary: Times
+        │                           ├── Call
+        │                           │   ├── Ident: int_to_real
+        │                           │   └── Args
+        │                           │       └── Binary: And
+        │                           │           ├── Literal: Int(17)
+        │                           │           └── Literal: Int(16)
+        │                           └── Literal: Real(256)
+        ├── Assign
+        │   ├── Ident: I
+        │   └── Binary: Times
+        │       ├── Ident: I
+        │       └── Literal: Int(1)
+        ├── Expr
+        │   └── Call
+        │       ├── Ident: writeln
+        │       └── Args
+        │           └── Ident: I
+        ├── If
+        │   ├── Literal: Bool(false)
+        │   └── Block
+        │       └── Expr
+        │           └── Call
+        │               ├── Ident: writeln
+        │               └── Args
+        │                   └── Literal: Int(67)
+        └── For: I (To)
+            ├── Literal: Int(0)
+            ├── Binary: Times
+            │   ├── Literal: Int(10)
+            │   └── Literal: Int(2)
+            └── Block
+                ├── Expr
+                │   └── Call
+                │       ├── Ident: writeln
+                │       └── Args
+                │           └── Ident: I
+                ├── Break
+                └── Expr
+                    └── Call
+                        ├── Ident: writeln
+                        └── Args
+                            └── Literal: Int(67)

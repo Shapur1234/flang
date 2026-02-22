@@ -1,0 +1,115 @@
+└── Program parity
+    ├── Global Variables
+    │   └── input: Int
+    ├── Func: bool_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: bool_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: exit_fail -> Void
+    │   └── Block
+    ├── Func: exit_ok -> Void
+    │   └── Block
+    ├── Func: int_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: int_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: isEven -> Bool
+    │   ├── Parameters
+    │   │   └── n: Int
+    │   └── Block
+    │       └── If
+    │           ├── Binary: Eq
+    │           │   ├── Ident: n
+    │           │   └── Literal: Int(0)
+    │           ├── Block
+    │           │   └── Assign
+    │           │       ├── Return
+    │           │       └── Literal: Bool(true)
+    │           └── Block
+    │               └── Assign
+    │                   ├── Return
+    │                   └── Call
+    │                       ├── Ident: isOdd
+    │                       └── Binary: Minus
+    │                           ├── Ident: n
+    │                           └── Literal: Int(1)
+    ├── Func: isOdd -> Bool
+    │   ├── Parameters
+    │   │   └── n: Int
+    │   └── Block
+    │       └── If
+    │           ├── Binary: Eq
+    │           │   ├── Ident: n
+    │           │   └── Literal: Int(0)
+    │           ├── Block
+    │           │   └── Assign
+    │           │       ├── Return
+    │           │       └── Literal: Bool(false)
+    │           └── Block
+    │               └── Assign
+    │                   ├── Return
+    │                   └── Call
+    │                       ├── Ident: isEven
+    │                       └── Binary: Minus
+    │                           ├── Ident: n
+    │                           └── Literal: Int(1)
+    ├── Func: readln -> Int
+    │   └── Block
+    ├── Func: readln_real -> Real
+    │   └── Block
+    ├── Func: real_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: real_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: writeln -> Void
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: writeln_real -> Void
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    └── Entrypoint
+        └── Block
+            ├── Assign
+            │   ├── Ident: input
+            │   └── Call
+            │       └── Ident: readln
+            └── While
+                ├── Binary: Neq
+                │   ├── Ident: input
+                │   └── Unary: Minus
+                │       └── Literal: Int(1)
+                └── Block
+                    ├── If
+                    │   ├── Binary: Lt
+                    │   │   ├── Ident: input
+                    │   │   └── Literal: Int(0)
+                    │   └── Block
+                    │       └── Expr
+                    │           └── Call
+                    │               └── Ident: exit_fail
+                    ├── Expr
+                    │   └── Call
+                    │       ├── Ident: writeln
+                    │       └── Call
+                    │           ├── Ident: bool_to_int
+                    │           └── Call
+                    │               ├── Ident: isEven
+                    │               └── Ident: input
+                    └── Assign
+                        ├── Ident: input
+                        └── Call
+                            └── Ident: readln

@@ -1,0 +1,7 @@
+EntrypointDecl
+Call("readln")
+Call("writeln")
+Pop(0)
+
+Label("entrypoint_epilogue")
+Call("exit_ok")

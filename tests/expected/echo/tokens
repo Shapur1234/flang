@@ -1,0 +1,13 @@
+   1:1    Program
+   1:9    Ident("echo")
+   1:13   Semicolon
+   3:1    LCurlyBracket
+   4:5    Ident("writeln")
+   4:12   LBracket
+   4:13   Ident("readln")
+   4:19   LBracket
+   4:20   RBracket
+   4:21   RBracket
+   4:22   Semicolon
+   5:1    RCurlyBracket
+   5:2    Dot

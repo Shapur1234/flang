@@ -1,0 +1,91 @@
+└── Program: factorization
+    ├── Decls
+    │   └── Proc: factorize
+    │       ├── Params
+    │       │   └── Param: n
+    │       │       └── Type: Int
+    │       ├── Locals
+    │       │   └── Var: d
+    │       │       └── Type: Int
+    │       └── Block
+    │           ├── If
+    │           │   ├── Binary: Eq
+    │           │   │   ├── Ident: n
+    │           │   │   └── Literal: Int(0)
+    │           │   └── Block
+    │           │       ├── Expr
+    │           │       │   └── Call
+    │           │       │       ├── Ident: writeln
+    │           │       │       └── Args
+    │           │       │           └── Literal: Int(0)
+    │           │       └── Exit
+    │           ├── If
+    │           │   ├── Binary: Lt
+    │           │   │   ├── Ident: n
+    │           │   │   └── Literal: Int(0)
+    │           │   └── Block
+    │           │       ├── Expr
+    │           │       │   └── Call
+    │           │       │       ├── Ident: writeln
+    │           │       │       └── Args
+    │           │       │           └── Unary: Minus
+    │           │       │               └── Literal: Int(1)
+    │           │       └── Assign
+    │           │           ├── Ident: n
+    │           │           └── Binary: Times
+    │           │               ├── Unary: Minus
+    │           │               │   └── Literal: Int(1)
+    │           │               └── Ident: n
+    │           ├── Assign
+    │           │   ├── Ident: d
+    │           │   └── Literal: Int(2)
+    │           ├── While
+    │           │   ├── Literal: Bool(true)
+    │           │   └── Block
+    │           │       ├── If
+    │           │       │   ├── Binary: Gt
+    │           │       │   │   ├── Binary: Times
+    │           │       │   │   │   ├── Ident: d
+    │           │       │   │   │   └── Ident: d
+    │           │       │   │   └── Ident: n
+    │           │       │   └── Break
+    │           │       ├── While
+    │           │       │   ├── Binary: Eq
+    │           │       │   │   ├── Binary: Mod
+    │           │       │   │   │   ├── Ident: n
+    │           │       │   │   │   └── Ident: d
+    │           │       │   │   └── Literal: Int(0)
+    │           │       │   └── Block
+    │           │       │       ├── Expr
+    │           │       │       │   └── Call
+    │           │       │       │       ├── Ident: writeln
+    │           │       │       │       └── Args
+    │           │       │       │           └── Ident: d
+    │           │       │       └── Assign
+    │           │       │           ├── Ident: n
+    │           │       │           └── Binary: Div
+    │           │       │               ├── Ident: n
+    │           │       │               └── Ident: d
+    │           │       └── Assign
+    │           │           ├── Ident: d
+    │           │           └── Binary: Plus
+    │           │               ├── Ident: d
+    │           │               └── Literal: Int(1)
+    │           └── If
+    │               ├── Binary: Gt
+    │               │   ├── Ident: n
+    │               │   └── Literal: Int(1)
+    │               └── Block
+    │                   └── Expr
+    │                       └── Call
+    │                           ├── Ident: writeln
+    │                           └── Args
+    │                               └── Ident: n
+    └── Block
+        └── Expr
+            └── Call
+                ├── Ident: factorize
+                └── Args
+                    └── Call
+                        ├── Ident: readln
+                        └── Args: []

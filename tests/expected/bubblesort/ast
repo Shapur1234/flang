@@ -1,0 +1,126 @@
+└── Program sortBubble
+    ├── Global Variables
+    │   ├── I: Int
+    │   ├── J: Int
+    │   ├── SIZE: Int
+    │   ├── TEMP: Int
+    │   └── X: Array { from: 0, to: 8000000, element: Int }
+    ├── Func: bool_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: bool_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: exit_fail -> Void
+    │   └── Block
+    ├── Func: exit_ok -> Void
+    │   └── Block
+    ├── Func: int_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: int_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: readln -> Int
+    │   └── Block
+    ├── Func: readln_real -> Real
+    │   └── Block
+    ├── Func: real_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: real_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: writeln -> Void
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: writeln_real -> Void
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    └── Entrypoint
+        └── Block
+            ├── Assign
+            │   ├── Ident: SIZE
+            │   └── Binary: Minus
+            │       ├── Call
+            │       │   └── Ident: readln
+            │       └── Literal: Int(1)
+            ├── If
+            │   ├── Binary: Or
+            │   │   ├── Binary: Lt
+            │   │   │   ├── Ident: SIZE
+            │   │   │   └── Literal: Int(0)
+            │   │   └── Binary: Gt
+            │   │       ├── Ident: SIZE
+            │   │       └── Literal: Int(8000000)
+            │   └── Expr
+            │       └── Call
+            │           └── Ident: exit_fail
+            ├── For: I (To)
+            │   ├── Literal: Int(0)
+            │   ├── Ident: SIZE
+            │   └── Block
+            │       └── Assign
+            │           ├── Index
+            │           │   ├── Ident: X
+            │           │   └── Ident: I
+            │           └── Call
+            │               └── Ident: readln
+            ├── For: I (To)
+            │   ├── Literal: Int(1)
+            │   ├── Ident: SIZE
+            │   └── Block
+            │       └── For: J (Downto)
+            │           ├── Ident: SIZE
+            │           ├── Ident: I
+            │           └── Block
+            │               └── If
+            │                   ├── Binary: Lt
+            │                   │   ├── Index
+            │                   │   │   ├── Ident: X
+            │                   │   │   └── Ident: J
+            │                   │   └── Index
+            │                   │       ├── Ident: X
+            │                   │       └── Binary: Minus
+            │                   │           ├── Ident: J
+            │                   │           └── Literal: Int(1)
+            │                   └── Block
+            │                       ├── Assign
+            │                       │   ├── Ident: TEMP
+            │                       │   └── Index
+            │                       │       ├── Ident: X
+            │                       │       └── Binary: Minus
+            │                       │           ├── Ident: J
+            │                       │           └── Literal: Int(1)
+            │                       ├── Assign
+            │                       │   ├── Index
+            │                       │   │   ├── Ident: X
+            │                       │   │   └── Binary: Minus
+            │                       │   │       ├── Ident: J
+            │                       │   │       └── Literal: Int(1)
+            │                       │   └── Index
+            │                       │       ├── Ident: X
+            │                       │       └── Ident: J
+            │                       └── Assign
+            │                           ├── Index
+            │                           │   ├── Ident: X
+            │                           │   └── Ident: J
+            │                           └── Ident: TEMP
+            └── For: I (To)
+                ├── Literal: Int(0)
+                ├── Ident: SIZE
+                └── Block
+                    └── Expr
+                        └── Call
+                            ├── Ident: writeln
+                            └── Index
+                                ├── Ident: X
+                                └── Ident: I

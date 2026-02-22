@@ -1,0 +1,89 @@
+└── Program: parity
+    ├── Decls
+    │   ├── Fn: isEven
+    │   │   ├── Params
+    │   │   │   └── Param: n
+    │   │   │       └── Type: Int
+    │   │   ├── Type: Bool
+    │   │   ├── Locals: []
+    │   │   └── Block
+    │   │       └── If
+    │   │           ├── Binary: Eq
+    │   │           │   ├── Ident: n
+    │   │           │   └── Literal: Int(0)
+    │   │           ├── Block
+    │   │           │   └── Assign
+    │   │           │       ├── Ident: isEven
+    │   │           │       └── Literal: Bool(true)
+    │   │           └── Block
+    │   │               └── Assign
+    │   │                   ├── Ident: isEven
+    │   │                   └── Call
+    │   │                       ├── Ident: isOdd
+    │   │                       └── Args
+    │   │                           └── Binary: Minus
+    │   │                               ├── Ident: n
+    │   │                               └── Literal: Int(1)
+    │   ├── Fn: isOdd
+    │   │   ├── Params
+    │   │   │   └── Param: n
+    │   │   │       └── Type: Int
+    │   │   ├── Type: Bool
+    │   │   ├── Locals: []
+    │   │   └── Block
+    │   │       └── If
+    │   │           ├── Binary: Eq
+    │   │           │   ├── Ident: n
+    │   │           │   └── Literal: Int(0)
+    │   │           ├── Block
+    │   │           │   └── Assign
+    │   │           │       ├── Ident: isOdd
+    │   │           │       └── Literal: Bool(false)
+    │   │           └── Block
+    │   │               └── Assign
+    │   │                   ├── Ident: isOdd
+    │   │                   └── Call
+    │   │                       ├── Ident: isEven
+    │   │                       └── Args
+    │   │                           └── Binary: Minus
+    │   │                               ├── Ident: n
+    │   │                               └── Literal: Int(1)
+    │   └── Var: input
+    │       └── Type: Int
+    └── Block
+        ├── Assign
+        │   ├── Ident: input
+        │   └── Call
+        │       ├── Ident: readln
+        │       └── Args: []
+        └── While
+            ├── Binary: Neq
+            │   ├── Ident: input
+            │   └── Unary: Minus
+            │       └── Literal: Int(1)
+            └── Block
+                ├── If
+                │   ├── Binary: Lt
+                │   │   ├── Ident: input
+                │   │   └── Literal: Int(0)
+                │   └── Block
+                │       └── Expr
+                │           └── Call
+                │               ├── Ident: exit_fail
+                │               └── Args: []
+                ├── Expr
+                │   └── Call
+                │       ├── Ident: writeln
+                │       └── Args
+                │           └── Call
+                │               ├── Ident: bool_to_int
+                │               └── Args
+                │                   └── Call
+                │                       ├── Ident: isEven
+                │                       └── Args
+                │                           └── Ident: input
+                └── Assign
+                    ├── Ident: input
+                    └── Call
+                        ├── Ident: readln
+                        └── Args: []

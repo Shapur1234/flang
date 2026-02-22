@@ -1,0 +1,15 @@
+program factorial_cycle;
+
+fn fact(n: Int): Int; {
+    fact := 1;
+    while (n >= 2) do {
+        fact := fact * n;
+        n := n - 1;
+    };
+};
+
+var i: Int;
+{
+    i := readln();
+    writeln(fact(i));
+}.

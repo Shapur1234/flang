@@ -1,0 +1,90 @@
+└── Program: isprime_Ἐρατοσθένης
+    ├── Decls
+    │   ├── Const: FROM
+    │   │   └── Val: Int(2)
+    │   ├── Var: Ἐρατοσθένης
+    │   │   └── Array [Int(2)..Int(8000000)]
+    │   │       └── Type: Bool
+    │   ├── Var: less_then
+    │   │   └── Type: Int
+    │   └── Var: i, j
+    │       └── Type: Int
+    └── Block
+        ├── Assign
+        │   ├── Ident: less_then
+        │   └── Call
+        │       ├── Ident: readln
+        │       └── Args: []
+        ├── If
+        │   ├── Binary: Or
+        │   │   ├── Binary: Lt
+        │   │   │   ├── Ident: less_then
+        │   │   │   └── Literal: Int(2)
+        │   │   └── Binary: Gt
+        │   │       ├── Ident: less_then
+        │   │       └── Literal: Int(8000000)
+        │   └── Expr
+        │       └── Call
+        │           ├── Ident: exit_fail
+        │           └── Args: []
+        ├── For: i (To)
+        │   ├── Ident: FROM
+        │   ├── Ident: less_then
+        │   └── Block
+        │       └── Assign
+        │           ├── Index
+        │           │   ├── Ident: Ἐρατοσθένης
+        │           │   └── Ident: i
+        │           └── Literal: Bool(true)
+        ├── For: i (To)
+        │   ├── Ident: FROM
+        │   ├── Ident: less_then
+        │   └── Block
+        │       └── If
+        │           ├── Index
+        │           │   ├── Ident: Ἐρατοσθένης
+        │           │   └── Ident: i
+        │           └── Block
+        │               ├── Assign
+        │               │   ├── Ident: j
+        │               │   └── Binary: Times
+        │               │       ├── Literal: Int(2)
+        │               │       └── Ident: i
+        │               └── While
+        │                   ├── Binary: Leq
+        │                   │   ├── Ident: j
+        │                   │   └── Ident: less_then
+        │                   └── Block
+        │                       ├── If
+        │                       │   ├── Binary: Eq
+        │                       │   │   ├── Binary: Mod
+        │                       │   │   │   ├── Ident: j
+        │                       │   │   │   └── Ident: i
+        │                       │   │   └── Literal: Int(0)
+        │                       │   └── Block
+        │                       │       └── Assign
+        │                       │           ├── Index
+        │                       │           │   ├── Ident: Ἐρατοσθένης
+        │                       │           │   └── Ident: j
+        │                       │           └── Literal: Bool(false)
+        │                       └── Assign
+        │                           ├── Ident: j
+        │                           └── Binary: Plus
+        │                               ├── Ident: j
+        │                               └── Ident: i
+        └── For: i (To)
+            ├── Ident: FROM
+            ├── Ident: less_then
+            └── Block
+                └── If
+                    ├── Binary: And
+                    │   ├── Index
+                    │   │   ├── Ident: Ἐρατοσθένης
+                    │   │   └── Ident: i
+                    │   └── Literal: Bool(true)
+                    └── Block
+                        └── Expr
+                            └── Call
+                                ├── Ident: writeln
+                                └── Args
+                                    └── Ident: i

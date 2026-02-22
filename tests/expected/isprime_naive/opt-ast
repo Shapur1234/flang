@@ -1,0 +1,131 @@
+└── Program isprime_naive
+    ├── Global Variables
+    │   ├── less_then: Int
+    │   └── num: Int
+    ├── Func: bool_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: bool_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: exit_fail -> Void
+    │   └── Block
+    ├── Func: exit_ok -> Void
+    │   └── Block
+    ├── Func: int_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: int_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: isprime -> Bool
+    │   ├── Parameters
+    │   │   └── n: Int
+    │   ├── Local Variables
+    │   │   └── i: Int
+    │   └── Block
+    │       └── If
+    │           ├── Binary: Lt
+    │           │   ├── Ident: n
+    │           │   └── Literal: Int(2)
+    │           ├── Assign
+    │           │   ├── Return
+    │           │   └── Literal: Bool(false)
+    │           └── If
+    │               ├── Binary: Lt
+    │               │   ├── Ident: n
+    │               │   └── Literal: Int(4)
+    │               ├── Assign
+    │               │   ├── Return
+    │               │   └── Literal: Bool(true)
+    │               └── If
+    │                   ├── Binary: Or
+    │                   │   ├── Binary: Eq
+    │                   │   │   ├── Binary: Mod
+    │                   │   │   │   ├── Ident: n
+    │                   │   │   │   └── Literal: Int(2)
+    │                   │   │   └── Literal: Int(0)
+    │                   │   └── Binary: Eq
+    │                   │       ├── Binary: Mod
+    │                   │       │   ├── Ident: n
+    │                   │       │   └── Literal: Int(3)
+    │                   │       └── Literal: Int(0)
+    │                   ├── Assign
+    │                   │   ├── Return
+    │                   │   └── Literal: Bool(false)
+    │                   └── Block
+    │                       ├── Assign
+    │                       │   ├── Return
+    │                       │   └── Literal: Bool(true)
+    │                       ├── Assign
+    │                       │   ├── Ident: i
+    │                       │   └── Literal: Int(5)
+    │                       └── While
+    │                           ├── Binary: Lt
+    │                           │   ├── Ident: i
+    │                           │   └── Ident: n
+    │                           └── Block
+    │                               ├── If
+    │                               │   ├── Binary: Eq
+    │                               │   │   ├── Binary: Mod
+    │                               │   │   │   ├── Ident: n
+    │                               │   │   │   └── Ident: i
+    │                               │   │   └── Literal: Int(0)
+    │                               │   └── Block
+    │                               │       ├── Assign
+    │                               │       │   ├── Return
+    │                               │       │   └── Literal: Bool(false)
+    │                               │       └── Exit
+    │                               └── Assign
+    │                                   ├── Ident: i
+    │                                   └── Binary: Plus
+    │                                       ├── Ident: i
+    │                                       └── Literal: Int(2)
+    ├── Func: readln -> Int
+    │   └── Block
+    ├── Func: readln_real -> Real
+    │   └── Block
+    ├── Func: real_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: real_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: writeln -> Void
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: writeln_real -> Void
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    └── Entrypoint
+        └── Block
+            ├── Assign
+            │   ├── Ident: less_then
+            │   └── Call
+            │       └── Ident: readln
+            ├── If
+            │   ├── Binary: Lt
+            │   │   ├── Ident: less_then
+            │   │   └── Literal: Int(2)
+            │   └── Expr
+            │       └── Call
+            │           └── Ident: exit_fail
+            └── For: num (To)
+                ├── Literal: Int(0)
+                ├── Ident: less_then
+                └── If
+                    ├── Call
+                    │   ├── Ident: isprime
+                    │   └── Ident: num
+                    └── Expr
+                        └── Call
+                            ├── Ident: writeln
+                            └── Ident: num

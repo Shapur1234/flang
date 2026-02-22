@@ -1,0 +1,33 @@
+program isprime_naive;
+
+fn isprime(n: Int): Bool;
+var i: Int;
+{
+    if n < 2 then {
+        isprime := FALSE
+    } else if n < 4 then {
+        isprime := TRUE
+    } else if ((n % 2) = 0) or ((n % 3) = 0) then {
+        isprime := FALSE
+    } else {
+        isprime := TRUE;
+        i := 5;
+
+        while i < n do {
+            if ((n % i) = 0) then {
+                isprime := FALSE;
+                exit;
+            };
+            i := i + 2;
+        };
+    }
+};
+
+var num       : Int;
+    less_then : Int;
+{
+    less_then := readln();
+	if (less_then < 2) then exit_fail();
+
+    for num := 0 to less_then do if isprime(num) then writeln(num)
+}.

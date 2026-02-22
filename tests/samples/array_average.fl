@@ -1,0 +1,21 @@
+program arrayAverage;
+
+var I, TEMP, NUM, SUM : Int;
+var X : array [0 .. 1000] of Int;
+{
+  NUM := readln();
+  if (NUM < 0) or (NUM > 1000) then exit_fail();
+
+  for I := 0 to NUM - 1 do {
+    TEMP := readln();
+    if (TEMP < 0) or (TEMP > 1000) then exit_fail();
+    X[TEMP] := X[TEMP] + 1;
+  };
+
+  SUM := 0;
+  for I := 1000 downto 0 do {
+    SUM := SUM + I * X[I];
+  };
+
+  writeln(SUM / NUM);
+}.

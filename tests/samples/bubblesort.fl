@@ -1,0 +1,26 @@
+program sortBubble;
+
+var SIZE, I, J, TEMP : Int;
+var X : array [0 .. 8000000] of Int;
+{
+  SIZE := readln() - 1;
+  if (SIZE < 0) or (SIZE > 8000000) then exit_fail();
+
+  for I := 0 to SIZE do {
+    X[I] := readln();
+  };
+
+  for I := 1 to SIZE do {
+    for J := SIZE downto I do {
+      if (X[J] < X[J - 1]) then {
+	    TEMP := X[J - 1];
+        X[J - 1] := X[J];
+	    X[J] := TEMP;
+      }
+    }
+  };
+
+  for I := 0 to SIZE do {
+    writeln(X[I]);
+  }
+}.

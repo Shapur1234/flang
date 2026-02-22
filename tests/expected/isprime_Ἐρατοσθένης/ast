@@ -1,0 +1,123 @@
+└── Program isprime_Ἐρατοσθένης
+    ├── Global Variables
+    │   ├── i: Int
+    │   ├── j: Int
+    │   ├── less_then: Int
+    │   └── Ἐρατοσθένης: Array { from: 2, to: 8000000, element: Bool }
+    ├── Func: bool_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: bool_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: exit_fail -> Void
+    │   └── Block
+    ├── Func: exit_ok -> Void
+    │   └── Block
+    ├── Func: int_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: int_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: readln -> Int
+    │   └── Block
+    ├── Func: readln_real -> Real
+    │   └── Block
+    ├── Func: real_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: real_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: writeln -> Void
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: writeln_real -> Void
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    └── Entrypoint
+        └── Block
+            ├── Assign
+            │   ├── Ident: less_then
+            │   └── Call
+            │       └── Ident: readln
+            ├── If
+            │   ├── Binary: Or
+            │   │   ├── Binary: Lt
+            │   │   │   ├── Ident: less_then
+            │   │   │   └── Literal: Int(2)
+            │   │   └── Binary: Gt
+            │   │       ├── Ident: less_then
+            │   │       └── Literal: Int(8000000)
+            │   └── Expr
+            │       └── Call
+            │           └── Ident: exit_fail
+            ├── For: i (To)
+            │   ├── Literal: Int(2)
+            │   ├── Ident: less_then
+            │   └── Block
+            │       └── Assign
+            │           ├── Index
+            │           │   ├── Ident: Ἐρατοσθένης
+            │           │   └── Ident: i
+            │           └── Literal: Bool(true)
+            ├── For: i (To)
+            │   ├── Literal: Int(2)
+            │   ├── Ident: less_then
+            │   └── Block
+            │       └── If
+            │           ├── Index
+            │           │   ├── Ident: Ἐρατοσθένης
+            │           │   └── Ident: i
+            │           └── Block
+            │               ├── Assign
+            │               │   ├── Ident: j
+            │               │   └── Binary: Times
+            │               │       ├── Literal: Int(2)
+            │               │       └── Ident: i
+            │               └── While
+            │                   ├── Binary: Leq
+            │                   │   ├── Ident: j
+            │                   │   └── Ident: less_then
+            │                   └── Block
+            │                       ├── If
+            │                       │   ├── Binary: Eq
+            │                       │   │   ├── Binary: Mod
+            │                       │   │   │   ├── Ident: j
+            │                       │   │   │   └── Ident: i
+            │                       │   │   └── Literal: Int(0)
+            │                       │   └── Block
+            │                       │       └── Assign
+            │                       │           ├── Index
+            │                       │           │   ├── Ident: Ἐρατοσθένης
+            │                       │           │   └── Ident: j
+            │                       │           └── Literal: Bool(false)
+            │                       └── Assign
+            │                           ├── Ident: j
+            │                           └── Binary: Plus
+            │                               ├── Ident: j
+            │                               └── Ident: i
+            └── For: i (To)
+                ├── Literal: Int(2)
+                ├── Ident: less_then
+                └── Block
+                    └── If
+                        ├── Binary: And
+                        │   ├── Index
+                        │   │   ├── Ident: Ἐρατοσθένης
+                        │   │   └── Ident: i
+                        │   └── Literal: Bool(true)
+                        └── Block
+                            └── Expr
+                                └── Call
+                                    ├── Ident: writeln
+                                    └── Ident: i

@@ -1,0 +1,42 @@
+└── Program: factorial_rec
+    ├── Decls
+    │   ├── Fn: fact
+    │   │   ├── Params
+    │   │   │   └── Param: n
+    │   │   │       └── Type: Int
+    │   │   ├── Type: Int
+    │   │   ├── Locals: []
+    │   │   └── Block
+    │   │       └── If
+    │   │           ├── Binary: Eq
+    │   │           │   ├── Ident: n
+    │   │           │   └── Literal: Int(0)
+    │   │           ├── Assign
+    │   │           │   ├── Ident: fact
+    │   │           │   └── Literal: Int(1)
+    │   │           └── Assign
+    │   │               ├── Ident: fact
+    │   │               └── Binary: Times
+    │   │                   ├── Ident: n
+    │   │                   └── Call
+    │   │                       ├── Ident: fact
+    │   │                       └── Args
+    │   │                           └── Binary: Minus
+    │   │                               ├── Ident: n
+    │   │                               └── Literal: Int(1)
+    │   └── Var: input
+    │       └── Type: Int
+    └── Block
+        ├── Assign
+        │   ├── Ident: input
+        │   └── Call
+        │       ├── Ident: readln
+        │       └── Args: []
+        └── Expr
+            └── Call
+                ├── Ident: writeln
+                └── Args
+                    └── Call
+                        ├── Ident: fact
+                        └── Args
+                            └── Ident: input

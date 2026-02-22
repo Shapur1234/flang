@@ -1,0 +1,10 @@
+└── Program: echo
+    ├── Decls: []
+    └── Block
+        └── Expr
+            └── Call
+                ├── Ident: writeln
+                └── Args
+                    └── Call
+                        ├── Ident: readln
+                        └── Args: []

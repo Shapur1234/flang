@@ -1,0 +1,102 @@
+└── Program: isprime_naive
+    ├── Decls
+    │   ├── Fn: isprime
+    │   │   ├── Params
+    │   │   │   └── Param: n
+    │   │   │       └── Type: Int
+    │   │   ├── Type: Bool
+    │   │   ├── Locals
+    │   │   │   └── Var: i
+    │   │   │       └── Type: Int
+    │   │   └── Block
+    │   │       └── If
+    │   │           ├── Binary: Lt
+    │   │           │   ├── Ident: n
+    │   │           │   └── Literal: Int(2)
+    │   │           ├── Block
+    │   │           │   └── Assign
+    │   │           │       ├── Ident: isprime
+    │   │           │       └── Literal: Bool(false)
+    │   │           └── If
+    │   │               ├── Binary: Lt
+    │   │               │   ├── Ident: n
+    │   │               │   └── Literal: Int(4)
+    │   │               ├── Block
+    │   │               │   └── Assign
+    │   │               │       ├── Ident: isprime
+    │   │               │       └── Literal: Bool(true)
+    │   │               └── If
+    │   │                   ├── Binary: Or
+    │   │                   │   ├── Binary: Eq
+    │   │                   │   │   ├── Binary: Mod
+    │   │                   │   │   │   ├── Ident: n
+    │   │                   │   │   │   └── Literal: Int(2)
+    │   │                   │   │   └── Literal: Int(0)
+    │   │                   │   └── Binary: Eq
+    │   │                   │       ├── Binary: Mod
+    │   │                   │       │   ├── Ident: n
+    │   │                   │       │   └── Literal: Int(3)
+    │   │                   │       └── Literal: Int(0)
+    │   │                   ├── Block
+    │   │                   │   └── Assign
+    │   │                   │       ├── Ident: isprime
+    │   │                   │       └── Literal: Bool(false)
+    │   │                   └── Block
+    │   │                       ├── Assign
+    │   │                       │   ├── Ident: isprime
+    │   │                       │   └── Literal: Bool(true)
+    │   │                       ├── Assign
+    │   │                       │   ├── Ident: i
+    │   │                       │   └── Literal: Int(5)
+    │   │                       └── While
+    │   │                           ├── Binary: Lt
+    │   │                           │   ├── Ident: i
+    │   │                           │   └── Ident: n
+    │   │                           └── Block
+    │   │                               ├── If
+    │   │                               │   ├── Binary: Eq
+    │   │                               │   │   ├── Binary: Mod
+    │   │                               │   │   │   ├── Ident: n
+    │   │                               │   │   │   └── Ident: i
+    │   │                               │   │   └── Literal: Int(0)
+    │   │                               │   └── Block
+    │   │                               │       ├── Assign
+    │   │                               │       │   ├── Ident: isprime
+    │   │                               │       │   └── Literal: Bool(false)
+    │   │                               │       └── Exit
+    │   │                               └── Assign
+    │   │                                   ├── Ident: i
+    │   │                                   └── Binary: Plus
+    │   │                                       ├── Ident: i
+    │   │                                       └── Literal: Int(2)
+    │   ├── Var: num
+    │   │   └── Type: Int
+    │   └── Var: less_then
+    │       └── Type: Int
+    └── Block
+        ├── Assign
+        │   ├── Ident: less_then
+        │   └── Call
+        │       ├── Ident: readln
+        │       └── Args: []
+        ├── If
+        │   ├── Binary: Lt
+        │   │   ├── Ident: less_then
+        │   │   └── Literal: Int(2)
+        │   └── Expr
+        │       └── Call
+        │           ├── Ident: exit_fail
+        │           └── Args: []
+        └── For: num (To)
+            ├── Literal: Int(0)
+            ├── Ident: less_then
+            └── If
+                ├── Call
+                │   ├── Ident: isprime
+                │   └── Args
+                │       └── Ident: num
+                └── Expr
+                    └── Call
+                        ├── Ident: writeln
+                        └── Args
+                            └── Ident: num

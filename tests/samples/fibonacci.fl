@@ -1,0 +1,74 @@
+program fibonacci;
+
+fn matmul(
+    a: array[1..2] of array[1..2] of Int,
+    b: array[1..2] of array[1..2] of Int
+): array[1..2] of array[1..2] of Int;
+var i, j, k, sum: Int;
+{
+    for i := 1 to 2 do {
+        for j := 1 to 2 do {
+            sum := 0;
+            for k := 1 to 2 do { sum := sum + (a[i][k] * b[k][j]); };
+            matmul[i][j] := sum;
+        };
+    };
+};
+
+fn matpow(
+    base: array[1..2] of array[1..2] of Int,
+    n: Int
+): array[1..2] of array[1..2] of Int; {
+    if n <= 0 then {
+        matpow[1][1] := 1;
+        matpow[1][2] := 0;
+        matpow[2][1] := 0;
+        matpow[2][2] := 1;
+        exit;
+    };
+
+    if n = 1 then {
+        matpow := base;
+        exit;
+    };
+
+    if n % 2 = 0 then {
+        matpow := matpow(matmul(base, base), n / 2);
+        exit;
+    };
+
+    if n % 2 = 1 then {
+        matpow := matmul(base, matpow(matmul(base, base), (n - 1) / 2));
+        exit;
+    };
+};
+
+fn fibonacci(n: Int): Int;
+var base:   array[1..2] of array[1..2] of Int;
+    result: array[1..2] of array[1..2] of Int;
+{
+    if n < 0 then exit_fail();
+
+    if n <= 0 then {
+        fibonacci := 0;
+        exit;
+    };
+  
+    if n = 1 then {
+        fibonacci := 1;
+        exit;
+    };
+    
+    base[1][1] := 1;
+    base[1][2] := 1;
+    base[2][1] := 1;
+    base[2][2] := 0;
+    
+    result := matpow(base, n - 2);
+    
+    fibonacci := result[1][1] + result[2][1];
+};
+
+{
+    writeln(fibonacci(readln()));
+}.

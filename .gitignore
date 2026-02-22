@@ -1,0 +1,6 @@
+/target
+result*
+a.out
+flamegraph.svg
+perf.data
+perf.data.old

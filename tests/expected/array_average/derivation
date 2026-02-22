@@ -1,0 +1,80 @@
+└── Program: arrayAverage
+    ├── Decls
+    │   ├── Var: I, TEMP, NUM, SUM
+    │   │   └── Type: Int
+    │   └── Var: X
+    │       └── Array [Int(0)..Int(1000)]
+    │           └── Type: Int
+    └── Block
+        ├── Assign
+        │   ├── Ident: NUM
+        │   └── Call
+        │       ├── Ident: readln
+        │       └── Args: []
+        ├── If
+        │   ├── Binary: Or
+        │   │   ├── Binary: Lt
+        │   │   │   ├── Ident: NUM
+        │   │   │   └── Literal: Int(0)
+        │   │   └── Binary: Gt
+        │   │       ├── Ident: NUM
+        │   │       └── Literal: Int(1000)
+        │   └── Expr
+        │       └── Call
+        │           ├── Ident: exit_fail
+        │           └── Args: []
+        ├── For: I (To)
+        │   ├── Literal: Int(0)
+        │   ├── Binary: Minus
+        │   │   ├── Ident: NUM
+        │   │   └── Literal: Int(1)
+        │   └── Block
+        │       ├── Assign
+        │       │   ├── Ident: TEMP
+        │       │   └── Call
+        │       │       ├── Ident: readln
+        │       │       └── Args: []
+        │       ├── If
+        │       │   ├── Binary: Or
+        │       │   │   ├── Binary: Lt
+        │       │   │   │   ├── Ident: TEMP
+        │       │   │   │   └── Literal: Int(0)
+        │       │   │   └── Binary: Gt
+        │       │   │       ├── Ident: TEMP
+        │       │   │       └── Literal: Int(1000)
+        │       │   └── Expr
+        │       │       └── Call
+        │       │           ├── Ident: exit_fail
+        │       │           └── Args: []
+        │       └── Assign
+        │           ├── Index
+        │           │   ├── Ident: X
+        │           │   └── Ident: TEMP
+        │           └── Binary: Plus
+        │               ├── Index
+        │               │   ├── Ident: X
+        │               │   └── Ident: TEMP
+        │               └── Literal: Int(1)
+        ├── Assign
+        │   ├── Ident: SUM
+        │   └── Literal: Int(0)
+        ├── For: I (Downto)
+        │   ├── Literal: Int(1000)
+        │   ├── Literal: Int(0)
+        │   └── Block
+        │       └── Assign
+        │           ├── Ident: SUM
+        │           └── Binary: Plus
+        │               ├── Ident: SUM
+        │               └── Binary: Times
+        │                   ├── Ident: I
+        │                   └── Index
+        │                       ├── Ident: X
+        │                       └── Ident: I
+        └── Expr
+            └── Call
+                ├── Ident: writeln
+                └── Args
+                    └── Binary: Div
+                        ├── Ident: SUM
+                        └── Ident: NUM

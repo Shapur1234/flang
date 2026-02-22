@@ -1,0 +1,92 @@
+└── Program euler
+    ├── Func: bool_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: bool_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: e -> Real
+    │   ├── Parameters
+    │   │   └── n: Int
+    │   ├── Local Variables
+    │   │   └── i: Int
+    │   └── Block
+    │       └── For: i (To)
+    │           ├── Literal: Int(0)
+    │           ├── Ident: n
+    │           └── Block
+    │               └── Assign
+    │                   ├── Return
+    │                   └── Binary: Plus
+    │                       ├── Return
+    │                       └── Binary: Div
+    │                           ├── Literal: Real(1)
+    │                           └── Call
+    │                               ├── Ident: int_to_real
+    │                               └── Call
+    │                                   ├── Ident: fact
+    │                                   └── Ident: i
+    ├── Func: exit_fail -> Void
+    │   └── Block
+    ├── Func: exit_ok -> Void
+    │   └── Block
+    ├── Func: fact -> Int
+    │   ├── Parameters
+    │   │   └── n: Int
+    │   └── Block
+    │       ├── Assign
+    │       │   ├── Return
+    │       │   └── Literal: Int(1)
+    │       └── While
+    │           ├── Binary: Geq
+    │           │   ├── Ident: n
+    │           │   └── Literal: Int(2)
+    │           └── Block
+    │               ├── Assign
+    │               │   ├── Return
+    │               │   └── Binary: Times
+    │               │       ├── Return
+    │               │       └── Ident: n
+    │               └── Assign
+    │                   ├── Ident: n
+    │                   └── Binary: Minus
+    │                       ├── Ident: n
+    │                       └── Literal: Int(1)
+    ├── Func: int_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: int_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: readln -> Int
+    │   └── Block
+    ├── Func: readln_real -> Real
+    │   └── Block
+    ├── Func: real_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: real_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: writeln -> Void
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: writeln_real -> Void
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    └── Entrypoint
+        └── Block
+            └── Expr
+                └── Call
+                    ├── Ident: writeln_real
+                    └── Call
+                        ├── Ident: e
+                        └── Literal: Int(10)

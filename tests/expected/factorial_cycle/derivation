@@ -1,0 +1,43 @@
+└── Program: factorial_cycle
+    ├── Decls
+    │   ├── Fn: fact
+    │   │   ├── Params
+    │   │   │   └── Param: n
+    │   │   │       └── Type: Int
+    │   │   ├── Type: Int
+    │   │   ├── Locals: []
+    │   │   └── Block
+    │   │       ├── Assign
+    │   │       │   ├── Ident: fact
+    │   │       │   └── Literal: Int(1)
+    │   │       └── While
+    │   │           ├── Binary: Geq
+    │   │           │   ├── Ident: n
+    │   │           │   └── Literal: Int(2)
+    │   │           └── Block
+    │   │               ├── Assign
+    │   │               │   ├── Ident: fact
+    │   │               │   └── Binary: Times
+    │   │               │       ├── Ident: fact
+    │   │               │       └── Ident: n
+    │   │               └── Assign
+    │   │                   ├── Ident: n
+    │   │                   └── Binary: Minus
+    │   │                       ├── Ident: n
+    │   │                       └── Literal: Int(1)
+    │   └── Var: i
+    │       └── Type: Int
+    └── Block
+        ├── Assign
+        │   ├── Ident: i
+        │   └── Call
+        │       ├── Ident: readln
+        │       └── Args: []
+        └── Expr
+            └── Call
+                ├── Ident: writeln
+                └── Args
+                    └── Call
+                        ├── Ident: fact
+                        └── Args
+                            └── Ident: i

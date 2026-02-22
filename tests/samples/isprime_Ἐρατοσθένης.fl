@@ -1,0 +1,32 @@
+program isprime_Ἐρατοσθένης;
+
+const FROM = 2;
+var Ἐρατοσθένης : array [2 .. 8000000] of Bool;
+	less_then   : Int;
+	i, j        : Int;
+{
+	less_then := readln();
+	if (less_then < 2) or (less_then > 8000000) then exit_fail();
+
+	for i := FROM to less_then do {
+        Ἐρατοσθένης[i] := TRUE;
+	};
+
+	for i := FROM to less_then do {
+		if Ἐρατοσθένης[i] then {
+			j := 2 * i;
+			while (j <= less_then) do {
+				if j % i = 0 then {
+					Ἐρατοσθένης[j] := FALSE;
+				};
+				j := j + i;
+			};
+		};
+	};
+
+	for i := FROM to less_then do {
+		if Ἐρατοσθένης[i] and TRUE then {
+			writeln(i);
+		};
+	};
+}.

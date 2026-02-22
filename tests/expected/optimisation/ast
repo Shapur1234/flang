@@ -1,0 +1,107 @@
+└── Program optimisation
+    ├── Global Variables
+    │   └── I: Int
+    ├── Func: bool_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: bool_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: exit_fail -> Void
+    │   └── Block
+    ├── Func: exit_ok -> Void
+    │   └── Block
+    ├── Func: int_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: int_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: readln -> Int
+    │   └── Block
+    ├── Func: readln_real -> Real
+    │   └── Block
+    ├── Func: real_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: real_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: writeln -> Void
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: writeln_real -> Void
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    └── Entrypoint
+        └── Block
+            ├── Block
+            │   └── Block
+            │       └── Block
+            │           └── Block
+            │               └── Block
+            │                   ├── Assign
+            │                   │   ├── Ident: I
+            │                   │   └── Binary: Times
+            │                   │       ├── Binary: Plus
+            │                   │       │   ├── Literal: Int(1)
+            │                   │       │   └── Literal: Int(2)
+            │                   │       └── Literal: Int(3)
+            │                   └── Expr
+            │                       └── Call
+            │                           ├── Ident: writeln
+            │                           └── Ident: I
+            ├── Block
+            │   └── Block
+            │       └── Assign
+            │           ├── Ident: I
+            │           └── Binary: Plus
+            │               ├── Ident: I
+            │               └── Call
+            │                   ├── Ident: real_to_int
+            │                   └── Binary: Times
+            │                       ├── Call
+            │                       │   ├── Ident: int_to_real
+            │                       │   └── Binary: And
+            │                       │       ├── Literal: Int(17)
+            │                       │       └── Literal: Int(16)
+            │                       └── Literal: Real(256)
+            ├── Assign
+            │   ├── Ident: I
+            │   └── Binary: Times
+            │       ├── Ident: I
+            │       └── Literal: Int(1)
+            ├── Expr
+            │   └── Call
+            │       ├── Ident: writeln
+            │       └── Ident: I
+            ├── If
+            │   ├── Literal: Bool(false)
+            │   └── Block
+            │       └── Expr
+            │           └── Call
+            │               ├── Ident: writeln
+            │               └── Literal: Int(67)
+            └── For: I (To)
+                ├── Literal: Int(0)
+                ├── Binary: Times
+                │   ├── Literal: Int(10)
+                │   └── Literal: Int(2)
+                └── Block
+                    ├── Expr
+                    │   └── Call
+                    │       ├── Ident: writeln
+                    │       └── Ident: I
+                    ├── Break
+                    └── Expr
+                        └── Call
+                            ├── Ident: writeln
+                            └── Literal: Int(67)

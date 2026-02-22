@@ -1,0 +1,21 @@
+program euler;
+
+fn fact(n: Int): Int; {
+    fact := 1;
+    while (n >= 2) do {
+        fact := fact * n;
+        n := n - 1;
+    };
+};
+
+fn e(n: Int): Real;
+var i: Int;
+{
+	for i := 0 to n do {
+		e := e + 1.0 / int_to_real(fact(i));
+	}
+};
+
+{
+	writeln_real(e(10));
+}.

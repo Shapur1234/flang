@@ -1,0 +1,262 @@
+└── Program: fibonacci
+    ├── Decls
+    │   ├── Fn: matmul
+    │   │   ├── Params
+    │   │   │   ├── Param: a
+    │   │   │   │   └── Array [Int(1)..Int(2)]
+    │   │   │   │       └── Array [Int(1)..Int(2)]
+    │   │   │   │           └── Type: Int
+    │   │   │   └── Param: b
+    │   │   │       └── Array [Int(1)..Int(2)]
+    │   │   │           └── Array [Int(1)..Int(2)]
+    │   │   │               └── Type: Int
+    │   │   ├── Array [Int(1)..Int(2)]
+    │   │   │   └── Array [Int(1)..Int(2)]
+    │   │   │       └── Type: Int
+    │   │   ├── Locals
+    │   │   │   └── Var: i, j, k, sum
+    │   │   │       └── Type: Int
+    │   │   └── Block
+    │   │       └── For: i (To)
+    │   │           ├── Literal: Int(1)
+    │   │           ├── Literal: Int(2)
+    │   │           └── Block
+    │   │               └── For: j (To)
+    │   │                   ├── Literal: Int(1)
+    │   │                   ├── Literal: Int(2)
+    │   │                   └── Block
+    │   │                       ├── Assign
+    │   │                       │   ├── Ident: sum
+    │   │                       │   └── Literal: Int(0)
+    │   │                       ├── For: k (To)
+    │   │                       │   ├── Literal: Int(1)
+    │   │                       │   ├── Literal: Int(2)
+    │   │                       │   └── Block
+    │   │                       │       └── Assign
+    │   │                       │           ├── Ident: sum
+    │   │                       │           └── Binary: Plus
+    │   │                       │               ├── Ident: sum
+    │   │                       │               └── Binary: Times
+    │   │                       │                   ├── Index
+    │   │                       │                   │   ├── Index
+    │   │                       │                   │   │   ├── Ident: a
+    │   │                       │                   │   │   └── Ident: i
+    │   │                       │                   │   └── Ident: k
+    │   │                       │                   └── Index
+    │   │                       │                       ├── Index
+    │   │                       │                       │   ├── Ident: b
+    │   │                       │                       │   └── Ident: k
+    │   │                       │                       └── Ident: j
+    │   │                       └── Assign
+    │   │                           ├── Index
+    │   │                           │   ├── Index
+    │   │                           │   │   ├── Ident: matmul
+    │   │                           │   │   └── Ident: i
+    │   │                           │   └── Ident: j
+    │   │                           └── Ident: sum
+    │   ├── Fn: matpow
+    │   │   ├── Params
+    │   │   │   ├── Param: base
+    │   │   │   │   └── Array [Int(1)..Int(2)]
+    │   │   │   │       └── Array [Int(1)..Int(2)]
+    │   │   │   │           └── Type: Int
+    │   │   │   └── Param: n
+    │   │   │       └── Type: Int
+    │   │   ├── Array [Int(1)..Int(2)]
+    │   │   │   └── Array [Int(1)..Int(2)]
+    │   │   │       └── Type: Int
+    │   │   ├── Locals: []
+    │   │   └── Block
+    │   │       ├── If
+    │   │       │   ├── Binary: Leq
+    │   │       │   │   ├── Ident: n
+    │   │       │   │   └── Literal: Int(0)
+    │   │       │   └── Block
+    │   │       │       ├── Assign
+    │   │       │       │   ├── Index
+    │   │       │       │   │   ├── Index
+    │   │       │       │   │   │   ├── Ident: matpow
+    │   │       │       │   │   │   └── Literal: Int(1)
+    │   │       │       │   │   └── Literal: Int(1)
+    │   │       │       │   └── Literal: Int(1)
+    │   │       │       ├── Assign
+    │   │       │       │   ├── Index
+    │   │       │       │   │   ├── Index
+    │   │       │       │   │   │   ├── Ident: matpow
+    │   │       │       │   │   │   └── Literal: Int(1)
+    │   │       │       │   │   └── Literal: Int(2)
+    │   │       │       │   └── Literal: Int(0)
+    │   │       │       ├── Assign
+    │   │       │       │   ├── Index
+    │   │       │       │   │   ├── Index
+    │   │       │       │   │   │   ├── Ident: matpow
+    │   │       │       │   │   │   └── Literal: Int(2)
+    │   │       │       │   │   └── Literal: Int(1)
+    │   │       │       │   └── Literal: Int(0)
+    │   │       │       ├── Assign
+    │   │       │       │   ├── Index
+    │   │       │       │   │   ├── Index
+    │   │       │       │   │   │   ├── Ident: matpow
+    │   │       │       │   │   │   └── Literal: Int(2)
+    │   │       │       │   │   └── Literal: Int(2)
+    │   │       │       │   └── Literal: Int(1)
+    │   │       │       └── Exit
+    │   │       ├── If
+    │   │       │   ├── Binary: Eq
+    │   │       │   │   ├── Ident: n
+    │   │       │   │   └── Literal: Int(1)
+    │   │       │   └── Block
+    │   │       │       ├── Assign
+    │   │       │       │   ├── Ident: matpow
+    │   │       │       │   └── Ident: base
+    │   │       │       └── Exit
+    │   │       ├── If
+    │   │       │   ├── Binary: Eq
+    │   │       │   │   ├── Binary: Mod
+    │   │       │   │   │   ├── Ident: n
+    │   │       │   │   │   └── Literal: Int(2)
+    │   │       │   │   └── Literal: Int(0)
+    │   │       │   └── Block
+    │   │       │       ├── Assign
+    │   │       │       │   ├── Ident: matpow
+    │   │       │       │   └── Call
+    │   │       │       │       ├── Ident: matpow
+    │   │       │       │       └── Args
+    │   │       │       │           ├── Call
+    │   │       │       │           │   ├── Ident: matmul
+    │   │       │       │           │   └── Args
+    │   │       │       │           │       ├── Ident: base
+    │   │       │       │           │       └── Ident: base
+    │   │       │       │           └── Binary: Div
+    │   │       │       │               ├── Ident: n
+    │   │       │       │               └── Literal: Int(2)
+    │   │       │       └── Exit
+    │   │       └── If
+    │   │           ├── Binary: Eq
+    │   │           │   ├── Binary: Mod
+    │   │           │   │   ├── Ident: n
+    │   │           │   │   └── Literal: Int(2)
+    │   │           │   └── Literal: Int(1)
+    │   │           └── Block
+    │   │               ├── Assign
+    │   │               │   ├── Ident: matpow
+    │   │               │   └── Call
+    │   │               │       ├── Ident: matmul
+    │   │               │       └── Args
+    │   │               │           ├── Ident: base
+    │   │               │           └── Call
+    │   │               │               ├── Ident: matpow
+    │   │               │               └── Args
+    │   │               │                   ├── Call
+    │   │               │                   │   ├── Ident: matmul
+    │   │               │                   │   └── Args
+    │   │               │                   │       ├── Ident: base
+    │   │               │                   │       └── Ident: base
+    │   │               │                   └── Binary: Div
+    │   │               │                       ├── Binary: Minus
+    │   │               │                       │   ├── Ident: n
+    │   │               │                       │   └── Literal: Int(1)
+    │   │               │                       └── Literal: Int(2)
+    │   │               └── Exit
+    │   └── Fn: fibonacci
+    │       ├── Params
+    │       │   └── Param: n
+    │       │       └── Type: Int
+    │       ├── Type: Int
+    │       ├── Locals
+    │       │   ├── Var: base
+    │       │   │   └── Array [Int(1)..Int(2)]
+    │       │   │       └── Array [Int(1)..Int(2)]
+    │       │   │           └── Type: Int
+    │       │   └── Var: result
+    │       │       └── Array [Int(1)..Int(2)]
+    │       │           └── Array [Int(1)..Int(2)]
+    │       │               └── Type: Int
+    │       └── Block
+    │           ├── If
+    │           │   ├── Binary: Lt
+    │           │   │   ├── Ident: n
+    │           │   │   └── Literal: Int(0)
+    │           │   └── Expr
+    │           │       └── Call
+    │           │           ├── Ident: exit_fail
+    │           │           └── Args: []
+    │           ├── If
+    │           │   ├── Binary: Leq
+    │           │   │   ├── Ident: n
+    │           │   │   └── Literal: Int(0)
+    │           │   └── Block
+    │           │       ├── Assign
+    │           │       │   ├── Ident: fibonacci
+    │           │       │   └── Literal: Int(0)
+    │           │       └── Exit
+    │           ├── If
+    │           │   ├── Binary: Eq
+    │           │   │   ├── Ident: n
+    │           │   │   └── Literal: Int(1)
+    │           │   └── Block
+    │           │       ├── Assign
+    │           │       │   ├── Ident: fibonacci
+    │           │       │   └── Literal: Int(1)
+    │           │       └── Exit
+    │           ├── Assign
+    │           │   ├── Index
+    │           │   │   ├── Index
+    │           │   │   │   ├── Ident: base
+    │           │   │   │   └── Literal: Int(1)
+    │           │   │   └── Literal: Int(1)
+    │           │   └── Literal: Int(1)
+    │           ├── Assign
+    │           │   ├── Index
+    │           │   │   ├── Index
+    │           │   │   │   ├── Ident: base
+    │           │   │   │   └── Literal: Int(1)
+    │           │   │   └── Literal: Int(2)
+    │           │   └── Literal: Int(1)
+    │           ├── Assign
+    │           │   ├── Index
+    │           │   │   ├── Index
+    │           │   │   │   ├── Ident: base
+    │           │   │   │   └── Literal: Int(2)
+    │           │   │   └── Literal: Int(1)
+    │           │   └── Literal: Int(1)
+    │           ├── Assign
+    │           │   ├── Index
+    │           │   │   ├── Index
+    │           │   │   │   ├── Ident: base
+    │           │   │   │   └── Literal: Int(2)
+    │           │   │   └── Literal: Int(2)
+    │           │   └── Literal: Int(0)
+    │           ├── Assign
+    │           │   ├── Ident: result
+    │           │   └── Call
+    │           │       ├── Ident: matpow
+    │           │       └── Args
+    │           │           ├── Ident: base
+    │           │           └── Binary: Minus
+    │           │               ├── Ident: n
+    │           │               └── Literal: Int(2)
+    │           └── Assign
+    │               ├── Ident: fibonacci
+    │               └── Binary: Plus
+    │                   ├── Index
+    │                   │   ├── Index
+    │                   │   │   ├── Ident: result
+    │                   │   │   └── Literal: Int(1)
+    │                   │   └── Literal: Int(1)
+    │                   └── Index
+    │                       ├── Index
+    │                       │   ├── Ident: result
+    │                       │   └── Literal: Int(2)
+    │                       └── Literal: Int(1)
+    └── Block
+        └── Expr
+            └── Call
+                ├── Ident: writeln
+                └── Args
+                    └── Call
+                        ├── Ident: fibonacci
+                        └── Args
+                            └── Call
+                                ├── Ident: readln
+                                └── Args: []

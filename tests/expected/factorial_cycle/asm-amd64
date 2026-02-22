@@ -1,0 +1,615 @@
+        global _start
+        section .text
+
+f_exit_fail:
+        mov eax, 60
+        mov edi, 1
+        syscall
+
+f_exit_ok:
+        mov eax, 60
+        mov edi, 0
+        syscall
+
+f_readln:
+        sub rsp, 16
+        mov qword [rsp+8], rbp
+        mov rbx, 9223372036854775807
+        movabs rbp, -3689348814741910323
+        xor r8d, r8d
+        xor r10d, r10d
+        xor ecx, ecx
+
+.skip_leading:
+
+        xor eax, eax
+        xor edi, edi
+        lea rsi, [rsp]
+        mov edx, 1
+        syscall
+        cmp rax, 1
+        jne .error
+        movzx eax, byte [rsp]
+
+        lea edx, [rax-9]
+        cmp dl, 5
+        jbe .skip_leading
+
+        cmp al, 32
+        je .skip_leading
+
+        cmp al, 45
+        jne .check_digit
+
+        mov r10d, 1
+        jmp .skip_leading
+
+.check_digit:
+        lea edx, [rax-48]
+        cmp dl, 9
+        jbe .first_digit
+        jmp .error
+
+.first_digit:
+        mov ecx, 1
+        movsx rcx, dl
+
+        lea rax, [r8+r8*4]
+        lea r8, [rcx+rax*2]
+        jmp .read_more
+
+.read_more:
+        xor eax, eax
+        xor edi, edi
+        lea rsi, [rsp]
+        mov edx, 1
+        syscall
+        cmp rax, 1
+        jne .done
+        movzx eax, byte [rsp]
+
+        lea edx, [rax-48]
+        cmp dl, 9
+        ja .check_terminator
+
+        movsx rcx, dl
+        mov rdx, rbx
+        sub rdx, rcx
+        mov rax, rdx
+        mul rbp
+        shr rdx, 3
+        cmp rdx, r8
+        jb .error
+        lea rax, [r8+r8*4]
+        lea r8, [rcx+rax*2]
+        jmp .read_more
+
+.check_terminator:
+
+        cmp al, 13
+        jle .done
+        cmp al, 32
+        je .done
+        jmp .error
+
+.done:
+        mov rax, r8
+        mov rbp, qword [rsp+8]
+        test r10d, r10d
+        jz .no_negate
+        neg rax
+.no_negate:
+        add rsp, 16
+
+        pop rcx
+        push rax
+        push rcx
+        ret
+
+.error:
+        call f_exit_fail
+
+f_readln_real:
+        sub rsp, 16
+        mov qword [rsp+8], rbp
+
+        xor r10d, r10d
+        xorpd xmm0, xmm0
+        mov rax, 10
+        cvtsi2sd xmm1, rax
+
+.skip_leading:
+        xor eax, eax
+        xor edi, edi
+        lea rsi, [rsp]
+        mov edx, 1
+        syscall
+        cmp rax, 1
+        jne .error
+        movzx eax, byte [rsp]
+
+        cmp al, 32
+        je .skip_leading
+        cmp al, 10
+        je .skip_leading
+        cmp al, 13
+        je .skip_leading
+        cmp al, 9
+        je .skip_leading
+
+        cmp al, 45
+        jne .check_digit
+
+        mov r10d, 1
+        jmp .read_int_loop
+
+.check_digit:
+        lea edx, [rax-48]
+        cmp dl, 9
+        ja .error
+        jmp .process_int_digit
+
+.read_int_loop:
+        xor eax, eax
+        xor edi, edi
+        lea rsi, [rsp]
+        mov edx, 1
+        syscall
+        cmp rax, 1
+        jne .done
+
+        movzx eax, byte [rsp]
+        cmp al, 46
+        je .start_fraction
+
+        lea edx, [rax-48]
+        cmp dl, 9
+        ja .check_terminator
+
+.process_int_digit:
+        mulsd xmm0, xmm1
+        movsx rcx, dl
+        cvtsi2sd xmm2, rcx
+        addsd xmm0, xmm2
+        jmp .read_int_loop
+
+.start_fraction:
+        mov rax, 1
+        cvtsi2sd xmm3, rax
+
+.read_frac_loop:
+        xor eax, eax
+        xor edi, edi
+        lea rsi, [rsp]
+        mov edx, 1
+        syscall
+        cmp rax, 1
+        jne .done
+
+        movzx eax, byte [rsp]
+        lea edx, [rax-48]
+        cmp dl, 9
+        ja .check_terminator
+
+        mulsd xmm3, xmm1
+        movsx rcx, dl
+        cvtsi2sd xmm2, rcx
+        divsd xmm2, xmm3
+        addsd xmm0, xmm2
+        jmp .read_frac_loop
+
+.check_terminator:
+        cmp al, 13
+        jle .done
+        cmp al, 32
+        je .done
+        jmp .error
+
+.done:
+        test r10d, r10d
+        jz .no_negate
+        xorpd xmm2, xmm2
+        subsd xmm2, xmm0
+        movaps xmm0, xmm2
+.no_negate:
+        movq rax, xmm0
+        mov rbp, qword [rsp+8]
+        add rsp, 16
+
+        pop rcx
+        push rax
+        push rcx
+        ret
+
+.error:
+        call f_exit_fail
+
+f_writeln:
+        push rbp
+        mov rbp, rsp
+        sub rsp, 32
+
+        mov rdi, [rbp + 16]
+
+        xor r10d, r10d
+        test rdi, rdi
+        jns .positive_or_zero
+        neg rdi
+        mov r10d, 1
+
+.positive_or_zero:
+        mov byte [rbp - 9], 10
+        lea rsi, [rbp - 9]
+
+        movabs r8, -3689348814741910323
+
+.extract_digits:
+        mov rax, rdi
+        mov r9, rsi
+        sub rsi, 1
+
+        mul r8
+        mov rax, rdi
+        shr rdx, 3
+
+        lea rcx, [rdx + rdx * 4]
+        add rcx, rcx
+        sub rax, rcx
+
+        add eax, 48
+        cmp rdi, 9
+        mov rdi, rdx
+        mov byte [rsi], al
+        ja .extract_digits
+
+        test r10, r10
+        je .write_string
+        mov byte [rsi - 1], '-'
+        lea rsi, [r9 - 2]
+
+.write_string:
+        lea rdx, [rbp - 8]
+        mov eax, 1
+        sub rdx, rsi
+        mov edi, eax
+
+        mov eax, 1
+        mov edi, eax
+        syscall
+        test rax, rax
+        js .error
+
+        mov rsp, rbp
+        pop rbp
+
+        ret 8
+
+.error:
+        call f_exit_fail
+
+f_writeln_real:
+        push rbp
+        mov rbp, rsp
+        sub rsp, 48
+
+        movq xmm0, [rbp + 16]
+
+        mov rax, [rbp + 16]
+        bt rax, 63
+        jnc .positive
+
+        mov byte [rbp - 1], '-'
+        mov eax, 1
+        mov edi, 1
+        lea rsi, [rbp - 1]
+        mov edx, 1
+        syscall
+        test rax, rax
+        js .error
+
+        mov rax, [rbp + 16]
+        btr rax, 63
+        movq xmm0, rax
+
+.positive:
+        cvttsd2si rdi, xmm0
+        cvtsi2sd xmm1, rdi
+        subsd xmm0, xmm1
+
+        movabs r8, -3689348814741910323
+        lea rsi, [rbp - 2]
+        mov r10, rsi
+
+.extract_int:
+        mov rax, rdi
+        mov r9, rsi
+        sub rsi, 1
+
+        mul r8
+        mov rax, rdi
+        shr rdx, 3
+
+        lea rcx, [rdx + rdx * 4]
+        add rcx, rcx
+        sub rax, rcx
+
+        add eax, 48
+        cmp rdi, 9
+        mov rdi, rdx
+        mov byte [rsi], al
+        ja .extract_int
+
+        mov rdx, r10
+        sub rdx, rsi
+        mov eax, 1
+        mov edi, 1
+        syscall
+        test rax, rax
+        js .error
+
+        mov byte [rbp - 1], '.'
+        mov eax, 1
+        mov edi, 1
+        lea rsi, [rbp - 1]
+        mov edx, 1
+        syscall
+        test rax, rax
+        js .error
+
+        mov ecx, 6
+        mov rax, 10
+        cvtsi2sd xmm2, rax
+
+.frac_loop:
+        push rcx
+        mulsd xmm0, xmm2
+        cvttsd2si rdi, xmm0
+        cvtsi2sd xmm1, rdi
+        subsd xmm0, xmm1
+
+        add rdi, 48
+        mov byte [rbp - 1], dil
+        mov eax, 1
+        mov edi, 1
+        lea rsi, [rbp - 1]
+        mov edx, 1
+        syscall
+        test rax, rax
+        js .error
+
+        pop rcx
+        dec ecx
+        jnz .frac_loop
+
+        mov byte [rbp - 1], 10
+        mov eax, 1
+        mov edi, 1
+        lea rsi, [rbp - 1]
+        mov edx, 1
+        syscall
+        test rax, rax
+        js .error
+
+        mov rsp, rbp
+        pop rbp
+        ret 8
+
+.error:
+        call f_exit_fail
+
+f_int_to_real:
+        pop rcx
+        pop rax
+        cvtsi2sd xmm0, rax
+        movq rax, xmm0
+        push rax
+        push rcx
+        ret
+
+f_int_to_bool:
+        pop rcx
+        pop rax
+        test rax, rax
+        setnz al
+        movzx rax, al
+        push rax
+        push rcx
+        ret
+
+f_bool_to_int:
+        pop rcx
+        pop rax
+        test rax, rax
+        setnz al
+        movzx rax, al
+        push rax
+        push rcx
+        ret
+
+f_bool_to_real:
+        pop rcx
+        pop rax
+        test rax, rax
+        setnz al
+        movzx rax, al
+        cvtsi2sd xmm0, rax
+        movq rax, xmm0
+        push rax
+        push rcx
+        ret
+
+f_real_to_int:
+        pop rcx
+        pop rax
+        movq xmm0, rax
+        cvttsd2si rax, xmm0
+        push rax
+        push rcx
+        ret
+
+f_real_to_bool:
+        pop rcx
+        pop rax
+        movq xmm0, rax
+        pxor xmm1, xmm1
+        ucomisd xmm0, xmm1
+        setne al
+        setp dl
+        or al, dl
+        movzx rax, al
+        push rax
+        push rcx
+        ret
+
+section .bss
+        f_i: resb 8
+
+section .text
+f_fact:
+        push rbp
+        mov rbp, rsp
+        sub rsp, 8
+        mov rdi, rsp
+        xor rax, rax
+        mov rcx, 8
+        rep stosb
+        lea rax, [rbp -8 ]
+        push rax
+        mov rax, 1
+        push rax
+        mov rdi, [rsp + 8]
+        mov rsi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        add rsp, 16
+while_start_0:
+        lea rax, [rbp +16 ]
+        push rax
+        pop rsi
+        sub rsp, 8
+        mov rdi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        mov rax, 2
+        push rax
+        pop rcx
+        pop rax
+        cmp rax, rcx
+        setge al
+        movzx rax, al
+        push rax
+        pop rax
+        test rax, rax
+        jz while_end_1
+        lea rax, [rbp -8 ]
+        push rax
+        lea rax, [rbp -8 ]
+        push rax
+        pop rsi
+        sub rsp, 8
+        mov rdi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        lea rax, [rbp +16 ]
+        push rax
+        pop rsi
+        sub rsp, 8
+        mov rdi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        pop rcx
+        pop rax
+        imul rax, rcx
+        push rax
+        mov rdi, [rsp + 8]
+        mov rsi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        add rsp, 16
+        lea rax, [rbp +16 ]
+        push rax
+        lea rax, [rbp +16 ]
+        push rax
+        pop rsi
+        sub rsp, 8
+        mov rdi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        mov rax, 1
+        push rax
+        pop rcx
+        pop rax
+        sub rax, rcx
+        push rax
+        mov rdi, [rsp + 8]
+        mov rsi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        add rsp, 16
+        jmp while_start_0
+while_end_1:
+fact_epilogue:
+        lea rax, [rbp +0 ]
+        push rax
+        pop rsi
+        sub rsp, 8
+        mov rdi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        pop r12
+        lea rax, [rbp +8 ]
+        push rax
+        pop rsi
+        sub rsp, 8
+        mov rdi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        pop r13
+        mov rsi, rsp
+        add rsi, 0
+        lea rdi, [rsi +24]
+        mov rcx, 8
+        std
+        add rsi, rcx
+        dec rsi
+        add rdi, rcx
+        dec rdi
+        rep movsb
+        cld
+        add rsp, 24
+        push r12
+        pop rbp
+        push r13
+        ret
+_start:
+        lea rax, [rel f_i]
+        push rax
+        call f_readln
+        mov rdi, [rsp + 8]
+        mov rsi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        add rsp, 16
+        lea rax, [rel f_i]
+        push rax
+        pop rsi
+        sub rsp, 8
+        mov rdi, rsp
+        mov rcx, 8
+        cld
+        rep movsb
+        call f_fact
+        call f_writeln
+        add rsp, 0
+entrypoint_epilogue:
+        call f_exit_ok

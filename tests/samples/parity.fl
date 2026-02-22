@@ -1,0 +1,33 @@
+program parity;
+
+fn isEven(n: Int): Bool;
+{
+    if n = 0 then {
+        isEven := TRUE
+    } else {
+        isEven := isOdd(n - 1)
+    }
+};
+
+fn isOdd(n: Int): Bool;
+{
+    if n = 0 then {
+        isOdd := FALSE
+    } else {
+        isOdd := isEven(n - 1)
+    }
+};
+
+var input: Int;
+{
+    input := readln();
+    while input != -1 do {
+        if input < 0 then {
+            exit_fail();
+        };
+
+        writeln(bool_to_int(isEven(input)));
+
+        input := readln();
+    }
+}.

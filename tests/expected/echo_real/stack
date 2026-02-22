@@ -1,0 +1,7 @@
+EntrypointDecl
+Call("readln_real")
+Call("writeln_real")
+Pop(0)
+
+Label("entrypoint_epilogue")
+Call("exit_ok")

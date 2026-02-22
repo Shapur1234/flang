@@ -1,0 +1,26 @@
+[package]
+name = "flang"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-or-later"
+readme = "README.md"
+
+[lints.clippy]
+pedantic = "warn"
+
+[profile.release]
+lto = true
+
+[profile.flamegraph]
+inherits = "release"
+debug = true
+panic = "abort"
+
+[dependencies]
+clap = { version = "4.5.60", features = ["derive"] }
+cphf = "1.0.0"
+tempfile = "3.27.0"
+thiserror = "2.0.18"
+
+[dev-dependencies]
+assert_cmd = "2.2.0"

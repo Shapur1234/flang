@@ -1,0 +1,62 @@
+└── Program: euler
+    ├── Decls
+    │   ├── Fn: fact
+    │   │   ├── Params
+    │   │   │   └── Param: n
+    │   │   │       └── Type: Int
+    │   │   ├── Type: Int
+    │   │   ├── Locals: []
+    │   │   └── Block
+    │   │       ├── Assign
+    │   │       │   ├── Ident: fact
+    │   │       │   └── Literal: Int(1)
+    │   │       └── While
+    │   │           ├── Binary: Geq
+    │   │           │   ├── Ident: n
+    │   │           │   └── Literal: Int(2)
+    │   │           └── Block
+    │   │               ├── Assign
+    │   │               │   ├── Ident: fact
+    │   │               │   └── Binary: Times
+    │   │               │       ├── Ident: fact
+    │   │               │       └── Ident: n
+    │   │               └── Assign
+    │   │                   ├── Ident: n
+    │   │                   └── Binary: Minus
+    │   │                       ├── Ident: n
+    │   │                       └── Literal: Int(1)
+    │   └── Fn: e
+    │       ├── Params
+    │       │   └── Param: n
+    │       │       └── Type: Int
+    │       ├── Type: Real
+    │       ├── Locals
+    │       │   └── Var: i
+    │       │       └── Type: Int
+    │       └── Block
+    │           └── For: i (To)
+    │               ├── Literal: Int(0)
+    │               ├── Ident: n
+    │               └── Block
+    │                   └── Assign
+    │                       ├── Ident: e
+    │                       └── Binary: Plus
+    │                           ├── Ident: e
+    │                           └── Binary: Div
+    │                               ├── Literal: Real(1)
+    │                               └── Call
+    │                                   ├── Ident: int_to_real
+    │                                   └── Args
+    │                                       └── Call
+    │                                           ├── Ident: fact
+    │                                           └── Args
+    │                                               └── Ident: i
+    └── Block
+        └── Expr
+            └── Call
+                ├── Ident: writeln_real
+                └── Args
+                    └── Call
+                        ├── Ident: e
+                        └── Args
+                            └── Literal: Int(10)

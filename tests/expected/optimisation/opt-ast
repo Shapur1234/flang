@@ -1,0 +1,73 @@
+└── Program optimisation
+    ├── Global Variables
+    │   └── I: Int
+    ├── Func: bool_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: bool_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: exit_fail -> Void
+    │   └── Block
+    ├── Func: exit_ok -> Void
+    │   └── Block
+    ├── Func: int_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: int_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: readln -> Int
+    │   └── Block
+    ├── Func: readln_real -> Real
+    │   └── Block
+    ├── Func: real_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: real_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: writeln -> Void
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: writeln_real -> Void
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    └── Entrypoint
+        └── Block
+            ├── Assign
+            │   ├── Ident: I
+            │   └── Literal: Int(9)
+            ├── Expr
+            │   └── Call
+            │       ├── Ident: writeln
+            │       └── Ident: I
+            ├── Assign
+            │   ├── Ident: I
+            │   └── Binary: Plus
+            │       ├── Ident: I
+            │       └── Literal: Int(4096)
+            ├── Assign
+            │   ├── Ident: I
+            │   └── Ident: I
+            ├── Expr
+            │   └── Call
+            │       ├── Ident: writeln
+            │       └── Ident: I
+            └── For: I (To)
+                ├── Literal: Int(0)
+                ├── Literal: Int(20)
+                └── Block
+                    ├── Expr
+                    │   └── Call
+                    │       ├── Ident: writeln
+                    │       └── Ident: I
+                    └── Break
