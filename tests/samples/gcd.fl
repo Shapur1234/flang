@@ -1,0 +1,40 @@
+program gcd;
+
+fn abs(a: Int): Int; {
+	if a >= 0 then {
+		abs := a;
+	} else {
+		abs := -a;
+	};
+};
+
+fn gcd(a: Int, b: Int): Int;
+var tmp_b: Int;
+{
+	while b != 0 do {
+		tmp_b := b;
+		b := a % b;
+		a := tmp_b;
+	};
+
+	gcd := a;
+};
+
+var in_a, in_b: Int;
+{
+	in_a := readln();
+	in_b := readln();
+
+	// Take abs value
+	in_a := abs(in_a);
+	in_b := abs(in_b);
+
+	// Ensure in_a >= in_b
+	if in_a < in_b then {
+		in_a := in_a xor in_b;
+		in_b := in_a xor in_b;
+		in_a := in_a xor in_b;
+	};
+
+	writeln(gcd(in_a, in_b));
+}.

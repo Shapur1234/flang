@@ -1,0 +1,106 @@
+└── Program: gcd
+    ├── Decls
+    │   ├── Fn: abs
+    │   │   ├── Params
+    │   │   │   └── Param: a
+    │   │   │       └── Type: Int
+    │   │   ├── Type: Int
+    │   │   ├── Locals: []
+    │   │   └── Block
+    │   │       └── If
+    │   │           ├── Binary: Geq
+    │   │           │   ├── Ident: a
+    │   │           │   └── Literal: Int(0)
+    │   │           ├── Block
+    │   │           │   └── Assign
+    │   │           │       ├── Ident: abs
+    │   │           │       └── Ident: a
+    │   │           └── Block
+    │   │               └── Assign
+    │   │                   ├── Ident: abs
+    │   │                   └── Unary: Minus
+    │   │                       └── Ident: a
+    │   ├── Fn: gcd
+    │   │   ├── Params
+    │   │   │   ├── Param: a
+    │   │   │   │   └── Type: Int
+    │   │   │   └── Param: b
+    │   │   │       └── Type: Int
+    │   │   ├── Type: Int
+    │   │   ├── Locals
+    │   │   │   └── Var: tmp_b
+    │   │   │       └── Type: Int
+    │   │   └── Block
+    │   │       ├── While
+    │   │       │   ├── Binary: Neq
+    │   │       │   │   ├── Ident: b
+    │   │       │   │   └── Literal: Int(0)
+    │   │       │   └── Block
+    │   │       │       ├── Assign
+    │   │       │       │   ├── Ident: tmp_b
+    │   │       │       │   └── Ident: b
+    │   │       │       ├── Assign
+    │   │       │       │   ├── Ident: b
+    │   │       │       │   └── Binary: Mod
+    │   │       │       │       ├── Ident: a
+    │   │       │       │       └── Ident: b
+    │   │       │       └── Assign
+    │   │       │           ├── Ident: a
+    │   │       │           └── Ident: tmp_b
+    │   │       └── Assign
+    │   │           ├── Ident: gcd
+    │   │           └── Ident: a
+    │   └── Var: in_a, in_b
+    │       └── Type: Int
+    └── Block
+        ├── Assign
+        │   ├── Ident: in_a
+        │   └── Call
+        │       ├── Ident: readln
+        │       └── Args: []
+        ├── Assign
+        │   ├── Ident: in_b
+        │   └── Call
+        │       ├── Ident: readln
+        │       └── Args: []
+        ├── Assign
+        │   ├── Ident: in_a
+        │   └── Call
+        │       ├── Ident: abs
+        │       └── Args
+        │           └── Ident: in_a
+        ├── Assign
+        │   ├── Ident: in_b
+        │   └── Call
+        │       ├── Ident: abs
+        │       └── Args
+        │           └── Ident: in_b
+        ├── If
+        │   ├── Binary: Lt
+        │   │   ├── Ident: in_a
+        │   │   └── Ident: in_b
+        │   └── Block
+        │       ├── Assign
+        │       │   ├── Ident: in_a
+        │       │   └── Binary: Xor
+        │       │       ├── Ident: in_a
+        │       │       └── Ident: in_b
+        │       ├── Assign
+        │       │   ├── Ident: in_b
+        │       │   └── Binary: Xor
+        │       │       ├── Ident: in_a
+        │       │       └── Ident: in_b
+        │       └── Assign
+        │           ├── Ident: in_a
+        │           └── Binary: Xor
+        │               ├── Ident: in_a
+        │               └── Ident: in_b
+        └── Expr
+            └── Call
+                ├── Ident: writeln
+                └── Args
+                    └── Call
+                        ├── Ident: gcd
+                        └── Args
+                            ├── Ident: in_a
+                            └── Ident: in_b

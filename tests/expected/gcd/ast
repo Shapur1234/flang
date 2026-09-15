@@ -1,0 +1,134 @@
+└── Program gcd
+    ├── Global Variables
+    │   ├── in_a: Int
+    │   └── in_b: Int
+    ├── Func: abs -> Int
+    │   ├── Parameters
+    │   │   └── a: Int
+    │   └── Block
+    │       └── If
+    │           ├── Binary: Geq
+    │           │   ├── Ident: a
+    │           │   └── Literal: Int(0)
+    │           ├── Block
+    │           │   └── Assign
+    │           │       ├── Return
+    │           │       └── Ident: a
+    │           └── Block
+    │               └── Assign
+    │                   ├── Return
+    │                   └── Unary: Minus
+    │                       └── Ident: a
+    ├── Func: bool_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: bool_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Bool
+    │   └── Block
+    ├── Func: exit_fail -> Void
+    │   └── Block
+    ├── Func: exit_ok -> Void
+    │   └── Block
+    ├── Func: gcd -> Int
+    │   ├── Parameters
+    │   │   ├── a: Int
+    │   │   └── b: Int
+    │   ├── Local Variables
+    │   │   └── tmp_b: Int
+    │   └── Block
+    │       ├── While
+    │       │   ├── Binary: Neq
+    │       │   │   ├── Ident: b
+    │       │   │   └── Literal: Int(0)
+    │       │   └── Block
+    │       │       ├── Assign
+    │       │       │   ├── Ident: tmp_b
+    │       │       │   └── Ident: b
+    │       │       ├── Assign
+    │       │       │   ├── Ident: b
+    │       │       │   └── Binary: Mod
+    │       │       │       ├── Ident: a
+    │       │       │       └── Ident: b
+    │       │       └── Assign
+    │       │           ├── Ident: a
+    │       │           └── Ident: tmp_b
+    │       └── Assign
+    │           ├── Return
+    │           └── Ident: a
+    ├── Func: int_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: int_to_real -> Real
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: readln -> Int
+    │   └── Block
+    ├── Func: readln_real -> Real
+    │   └── Block
+    ├── Func: real_to_bool -> Bool
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: real_to_int -> Int
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    ├── Func: writeln -> Void
+    │   ├── Parameters
+    │   │   └── value: Int
+    │   └── Block
+    ├── Func: writeln_real -> Void
+    │   ├── Parameters
+    │   │   └── value: Real
+    │   └── Block
+    └── Entrypoint
+        └── Block
+            ├── Assign
+            │   ├── Ident: in_a
+            │   └── Call
+            │       └── Ident: readln
+            ├── Assign
+            │   ├── Ident: in_b
+            │   └── Call
+            │       └── Ident: readln
+            ├── Assign
+            │   ├── Ident: in_a
+            │   └── Call
+            │       ├── Ident: abs
+            │       └── Ident: in_a
+            ├── Assign
+            │   ├── Ident: in_b
+            │   └── Call
+            │       ├── Ident: abs
+            │       └── Ident: in_b
+            ├── If
+            │   ├── Binary: Lt
+            │   │   ├── Ident: in_a
+            │   │   └── Ident: in_b
+            │   └── Block
+            │       ├── Assign
+            │       │   ├── Ident: in_a
+            │       │   └── Binary: Xor
+            │       │       ├── Ident: in_a
+            │       │       └── Ident: in_b
+            │       ├── Assign
+            │       │   ├── Ident: in_b
+            │       │   └── Binary: Xor
+            │       │       ├── Ident: in_a
+            │       │       └── Ident: in_b
+            │       └── Assign
+            │           ├── Ident: in_a
+            │           └── Binary: Xor
+            │               ├── Ident: in_a
+            │               └── Ident: in_b
+            └── Expr
+                └── Call
+                    ├── Ident: writeln
+                    └── Call
+                        ├── Ident: gcd
+                        ├── Ident: in_a
+                        └── Ident: in_b
